@@ -3,12 +3,12 @@ import {CartContext } from "../../contexts/CartContext/CartContext";
 
 export default function Product({product}) {
 
-    const [counter, setcounter] = useState(0)
-    const {cart, setCart} = useContext(CartContext)
+    const [counter, setcounter] = useState(1)
+    const {setCart} = useContext(CartContext)
 
     return (
-        <div className = 'w-52 m-8 flex flex-col justify-between bg-white border-2 rounded-lg'>
-            <img src = {product.image} className = 'h-36 m-auto' alt ='img'/>
+        <div className = 'w-56 shadow-xl m-8 flex flex-col justify-between bg-white border-2 rounded-lg'>
+            <img src = {product.image} className = 'h-36 m-auto' alt ='product-img'/>
 
             <div className ='text-xs mt-6 pb-0px m-2'>
                 <p>{product.title}</p>
@@ -23,8 +23,9 @@ export default function Product({product}) {
                 </div>
 
                 <div className = 'border cursor-pointer py-1 px-1 hover:bg-black hover:text-white' onClick = {e =>{
-                    setcounter(0)
-                    return setCart({...product, counter})
+                    let cnt = counter;
+                    setcounter(1)
+                    return setCart({type: 'ADD_CART',action:{...product, quantity: cnt}})
                 }}>Add to Cart</div>
             </div>
         </div>
