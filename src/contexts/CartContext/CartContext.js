@@ -21,6 +21,8 @@ function reducer(state, {type, action}){
             return [...state, action]
         case 'DELETE_CART' :
             return state.filter(c => c.id !==action.id)
+            case 'CHECKOUT_CART' :
+                return action
         default:
             return state;
 

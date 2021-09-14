@@ -5,6 +5,7 @@ import NavBar from "../Navbar/NavBar";
 import Product from "../Product/Product";
 import Banner from "../Banner/Banner";
 import Cart from "../Cart/Cart";
+import Footer from "../Footer/Footer";
 
 export default function Home() {
     const [ products, setproducts ] = useState([]);
@@ -40,6 +41,8 @@ export default function Home() {
             <div  className = 'flex flex-wrap justify-around  bg-gray-100'>
                 {products.map((product,index) => <Product key = {index} product = {product}/>)}
             </div>
+
+            <Footer/>
         </CartContextProvider>
     );
 }

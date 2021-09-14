@@ -17,7 +17,7 @@ export default function Product({product}) {
 
             <div className = "flex justify-between m-2"> 
                 <div className = 'py-1 flex justify-between border w-20 px-3'>
-                    <p className = 'cursor-pointer' onClick = {e => setcounter(prev => prev-1) }>-</p>
+                    <p className = 'cursor-pointer' onClick = {e => setcounter(prev => prev-1 < 1 ? 1 : prev -1 ) }>-</p>
                     {counter}
                     <p className = 'cursor-pointer' onClick = {e => setcounter(prev => prev+1)}>+</p>
                 </div>
