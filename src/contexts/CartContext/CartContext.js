@@ -3,20 +3,18 @@ import React, {useReducer} from 'react'
 export const CartContext = React.createContext();
 
 function reducer(state, {type, action}){
-    // state[action.id] = action
-    // console.log(state)
-    // return state
-
     switch(type){
         case 'ADD_CART' :
+            // console.log(action)
             for(let i = 0; i < state.length; i++){
                 if(state[i].id === action.id){
                     state[i].quantity += action.quantity;
-                    console.log(state[i])
-                    
+                    if(state[i].quantity <= 0) state[i].quantity = false
+                    // console.log(state[i])
                     return [...state];
                 }
             }
+            // console.log(action)
         
             return [...state, action]
         case 'DELETE_CART' :

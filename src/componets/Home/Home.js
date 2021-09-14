@@ -7,6 +7,12 @@ import Banner from "../Banner/Banner";
 import Cart from "../Cart/Cart";
 import Footer from "../Footer/Footer";
 
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route
+  } from "react-router-dom";
+
 export default function Home() {
     const [ products, setproducts ] = useState([]);
     const [fourOfourpage, setfourOfourpage] = useState()
@@ -27,22 +33,37 @@ export default function Home() {
 
     return (
         <CartContextProvider>
+          
+            <Router>
+                <Switch>
+                    <Route exact path ="/">
+                        <div className = 'sticky top-0'>
+                            <NavBar setIsOpen = {setIsOpen} modalIsOpen ={modalIsOpen}/> 
+                        </div>
 
-            <div className = 'sticky top-0'>
-                <NavBar setIsOpen = {setIsOpen} modalIsOpen ={modalIsOpen}/> 
-            </div>
-            <Cart setIsOpen = {setIsOpen} modalIsOpen ={modalIsOpen}/>
+                        <Cart setIsOpen = {setIsOpen} modalIsOpen ={modalIsOpen}/>
+                        <Banner/>
+                        {fourOfourpage && (<div className = 'text-4xl flex justify-center mt-48'>{fourOfourpage}...</div>)}
 
-            <Banner/>
+                        <div  className = 'flex flex-wrap justify-around  bg-gray-100'>
+                            {products.map((product,index) => <Product key = {index} product = {product}/>)}
+                        </div>
+                        <Footer/>
 
-            {fourOfourpage && (<div className = 'text-4xl flex justify-center mt-48'>{fourOfourpage}...</div>)}
+                    </Route>
 
+                    <Route path = "/check_out">
+                        <div className = 'text-4xl flex justify-center mt-60'>Thank You for Choosing us!</div>
+                    </Route>
 
-            <div  className = 'flex flex-wrap justify-around  bg-gray-100'>
-                {products.map((product,index) => <Product key = {index} product = {product}/>)}
-            </div>
+                    <Route path ="*">
+                        <div className = 'text-4xl flex justify-center mt-48'>Please Provide a Valid Route Path...</div>
+                    </Route>
 
-            <Footer/>
+                </Switch>
+            </Router>
+           
+           
         </CartContextProvider>
     );
 }
