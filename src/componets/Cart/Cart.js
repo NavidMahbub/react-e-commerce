@@ -16,7 +16,7 @@ const customStyles = {
         bottom: "auto",
         // marginRight: '-50%',
         width: "35%",
-        height: "auto",
+        height: "95%",
         // transform: 'translate(-50%, -50%)',
     },
 };
@@ -43,7 +43,7 @@ export default function Cart({ setIsOpen, modalIsOpen }) {
                 onAfterOpen={afterOpenModal}
                 onRequestClose={closeModal}
                 style={customStyles}
-                // className ="w-full lg:w-1/3"
+                htmlOpenClassName ="overflow-hidden"
             >
                 <h2
                     ref={(_subtitle) => (subtitle = _subtitle)}
