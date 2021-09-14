@@ -5,6 +5,7 @@ import CartItem from "../CartItem/CartItem";
 import {
   Link
 } from "react-router-dom";
+// import CheckOut from "../CheckOut/CheckOut";
 
 
 const customStyles = {
@@ -23,7 +24,7 @@ const customStyles = {
 export default function Cart({ setIsOpen, modalIsOpen }) {
     let subtitle,
         total = 0;
-    const { cart, setCart } = useContext(CartContext);
+    const { cart } = useContext(CartContext);
     Modal.setAppElement("#root");
 
     function afterOpenModal() {
@@ -70,15 +71,12 @@ export default function Cart({ setIsOpen, modalIsOpen }) {
                             className="m-auto border p-1 cursor-pointer border-black hover:bg-black hover:text-white w-32 text-center"
                             onClick={(e) => {
                              
-                                closeModal();
-                                return setCart({
-                                    type: "CHECKOUT_CART",
-                                    action: [],
-                                });
+                                
+                                return closeModal();
                             }}
                         >
                           <Link to="/check_out">Check Out</Link>
-                            
+                          
                         </div>
                     </div>
                 </div>

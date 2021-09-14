@@ -12,6 +12,7 @@ import {
     Switch,
     Route
   } from "react-router-dom";
+import CheckOut from "../CheckOut/CheckOut";
 
 export default function Home() {
     const [ products, setproducts ] = useState([]);
@@ -53,7 +54,8 @@ export default function Home() {
                     </Route>
 
                     <Route path = "/check_out">
-                        <div className = 'text-4xl flex justify-center mt-60'>Thank You for Choosing us!</div>
+                        {/* <div className = 'text-4xl flex justify-center mt-60'>Thank You for Choosing us!</div> */}
+                        <CheckOut/>
                     </Route>
 
                     <Route path ="*">
