@@ -20,7 +20,7 @@ export default function Product({product}) {
     }, [cart,product.id])
 
     return (
-        <div className = 'w-56 shadow-xl m-8 flex flex-col justify-between bg-white border-2 rounded-lg'>
+        <div className = 'w-52 shadow-xl m-8 flex flex-col justify-between bg-white border-2 rounded-lg'>
             <img src = {product.image} className = 'h-36 m-auto' alt ='product-img'/>
 
             <div className ='text-xs mt-6 pb-0px m-2'>

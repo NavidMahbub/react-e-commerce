@@ -5,7 +5,7 @@ export default function Banner() {
         <div className = 'bg-cover bg-center h-96 bg-banner-pattern'>
            <div className = 'tracking-widest pt-36'>
 
-               <div className ='text-4xl sm:text-2xl  uppercase  flex flex-col'>
+               <div className ='md:text-4xl text-2xl  uppercase  flex flex-col'>
                     <div className = 'm-auto'>Take Your Fit To The</div>                   
                     <div className = 'm-auto' >Ne(x)t Level</div>
                </div>

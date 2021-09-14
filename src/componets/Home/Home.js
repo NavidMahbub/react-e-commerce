@@ -46,7 +46,7 @@ export default function Home() {
                         <Banner/>
                         {fourOfourpage && (<div className = 'text-4xl flex justify-center mt-48'>{fourOfourpage}...</div>)}
 
-                        <div  className = 'flex flex-wrap grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 justify-around  bg-gray-100'>
+                        <div  className = 'grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 justify-around sm:justify-center bg-gray-100'>
                             {products.map((product,index) => <Product key = {index} product = {product}/>)}
                         </div>
                         <Footer/>
