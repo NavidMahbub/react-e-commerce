@@ -8,12 +8,15 @@ export default function Product({product}) {
 
 
     useEffect(() => {
-
+        let check = true
         for(let i = 0; i < cart.length; i++){
             if(cart[i].id === product.id){
                 setcounter(cart[i].quantity)
+                check = false;
             }
         }
+        if(check)  setcounter(false)
+
     }, [cart,product.id])
 
     return (
@@ -44,7 +47,7 @@ export default function Product({product}) {
                     setCart({type: 'ADD_CART',action:{...product, quantity: 1}})
                 }>Add to Cart</div>
             </div>
-            
+
         </div>
     )
 }

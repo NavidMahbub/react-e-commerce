@@ -27,7 +27,7 @@ export default function Home() {
                 setfourOfourpage(null)
             })
             .catch((err) => {
-                console.log(err);
+                //console.log(err);
                 setfourOfourpage(err.toString())
             });
     }, []);
