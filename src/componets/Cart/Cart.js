@@ -2,11 +2,7 @@ import React, { useContext } from "react";
 import Modal from "react-modal";
 import { CartContext } from "../../contexts/CartContext/CartContext";
 import CartItem from "../CartItem/CartItem";
-import {
-  Link
-} from "react-router-dom";
-// import CheckOut from "../CheckOut/CheckOut";
-
+import { Link } from "react-router-dom";
 
 const customStyles = {
     content: {
@@ -14,10 +10,8 @@ const customStyles = {
         left: "auto",
         right: "1%",
         bottom: "auto",
-        // marginRight: '-50%',
-        width: "35%",
+        width: "600px",
         height: "95%",
-        // transform: 'translate(-50%, -50%)',
     },
 };
 
@@ -43,7 +37,7 @@ export default function Cart({ setIsOpen, modalIsOpen }) {
                 onAfterOpen={afterOpenModal}
                 onRequestClose={closeModal}
                 style={customStyles}
-                htmlOpenClassName ="overflow-hidden"
+                htmlOpenClassName="overflow-hidden"
             >
                 <h2
                     ref={(_subtitle) => (subtitle = _subtitle)}
@@ -52,34 +46,25 @@ export default function Cart({ setIsOpen, modalIsOpen }) {
                 >
                     X
                 </h2>
-                {/* {cart.length} */}
 
                 <h2 className="text-center tracking-widest">Cart Items</h2>
 
                 {cart.map((item, idx) => {
                     total += item.quantity * item.price;
-                    return <CartItem key={idx} item={item} />;
+                    return <CartItem key={idx} item = {item} />;
                 })}
 
                 <div className="flex justify-end mr-8">
                     Total Amount : {total.toFixed(2)}
                 </div>
-                <div className="flex p-5">
-                    <div className="w-auto m-auto flex">
-                        {/* <div className = 'border cursor-pointer p-1 border-black hover:bg-black hover:text-white'>Procceed To Pay </div>                    */}
-                        <div
-                            className="m-auto border p-1 cursor-pointer border-black hover:bg-black hover:text-white w-32 text-center"
-                            onClick={(e) => {
-                             
-                                
-                                return closeModal();
-                            }}
-                        >
-                          <Link to="/check_out">Check Out</Link>
-                          
-                        </div>
-                    </div>
-                </div>
+                
+                <Link to="/check_out" className="flex justify-center w-24 p-1 m-auto  border  cursor-pointer border-black hover:bg-black hover:text-white text-center"
+                    onClick={(e) => {
+                        return closeModal();
+                    }}
+                >
+                    Check Out
+                </Link>
             </Modal>
         </div>
     );
