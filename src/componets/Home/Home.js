@@ -12,7 +12,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 export default function Home() {
     const [products, setproducts] = useState([]);
     const [fourOfourpage, setfourOfourpage] = useState();
-    const [modalIsOpen, setIsOpen] = React.useState(false);
+    const [modalIsOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
         axios

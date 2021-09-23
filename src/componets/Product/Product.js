@@ -6,6 +6,8 @@ export default function Product({ product }) {
     const { cart, setCart } = useContext(CartContext);
 
     useEffect(() => {
+
+        console.log('hereree')
         let check = true;
         for (let i = 0; i < cart.length; i++) {
             if (cart[i].id === product.id) {
