@@ -28,10 +28,9 @@ export default function Home() {
     //         });
     // }, []);
 
-
     //custom hooks
     const {products} = useFetchProducts("https://fakestoreapi.com/products")
-    const {modalIsOpen, setIsOpen} = useModalOpen()
+    const {modalIsOpen, setIsOpen} = useModalOpen(false)
 
     return (
         <CartContextProvider>
