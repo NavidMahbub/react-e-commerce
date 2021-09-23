@@ -7,7 +7,6 @@ export default function Product({ product }) {
 
     useEffect(() => {
 
-        console.log('hereree')
         let check = true;
         for (let i = 0; i < cart.length; i++) {
             if (cart[i].id === product.id) {

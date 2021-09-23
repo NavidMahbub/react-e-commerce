@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
+
 import { CartContextProvider } from "../../contexts/CartContext/CartContext";
 import NavBar from "../Navbar/NavBar";
 import Product from "../Product/Product";
@@ -8,23 +8,30 @@ import Cart from "../Cart/Cart";
 import Footer from "../Footer/Footer";
 import CheckOut from "../CheckOut/CheckOut";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {  useFetchProducts  } from "../../hook/useFetchProducts";
+import useModalOpen from "../../hook/useModalOpen";
 
 export default function Home() {
-    const [products, setproducts] = useState([]);
-    const [fourOfourpage, setfourOfourpage] = useState();
-    const [modalIsOpen, setIsOpen] = useState(false);
+    // const [products, setproducts] = useState([]);
+    const [fourOfourpage, setfourOfourpage] = useState(false);
+    // const [modalIsOpen, setIsOpen] = useState(false);
 
-    useEffect(() => {
-        axios
-            .get("https://fakestoreapi.com/products")
-            .then((res) => {
-                setproducts(res.data);
-                setfourOfourpage(null);
-            })
-            .catch((err) => {
-                setfourOfourpage(err.toString());
-            });
-    }, []);
+    // useEffect(() => {
+    //     axios
+    //         .get("https://fakestoreapi.com/products")
+    //         .then((res) => {
+    //             setproducts(res.data);
+    //             setfourOfourpage(null);
+    //         })
+    //         .catch((err) => {
+    //             setfourOfourpage(err.toString());
+    //         });
+    // }, []);
+
+
+    //custom hooks
+    const {products} = useFetchProducts("https://fakestoreapi.com/products")
+    const {modalIsOpen, setIsOpen} = useModalOpen()
 
     return (
         <CartContextProvider>
