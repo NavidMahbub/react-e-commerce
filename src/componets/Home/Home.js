@@ -4,25 +4,23 @@ import { CartContextProvider } from "../../contexts/CartContext/CartContext";
 import NavBar from "../Navbar/NavBar";
 import Product from "../Product/Product";
 import Banner from "../Banner/Banner";
-import Cart from "../Cart/Cart";
 import Footer from "../Footer/Footer";
 import CheckOut from "../CheckOut/CheckOut";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 export default function Home() {
-    const [products, setproducts] = useState([]);
-    const [fourOfourpage, setfourOfourpage] = useState();
-    const [modalIsOpen, setIsOpen] = React.useState(false);
+    const [products, setProducts] = useState([]);
+    const [errors, setErrors] = useState();
 
     useEffect(() => {
         axios
             .get("https://fakestoreapi.com/products")
             .then((res) => {
-                setproducts(res.data);
-                setfourOfourpage(null);
+                setProducts(res.data);
+                setErrors(null);
             })
             .catch((err) => {
-                setfourOfourpage(err.toString());
+                setErrors(err.toString());
             });
     }, []);
 
@@ -30,17 +28,17 @@ export default function Home() {
         <CartContextProvider>
             <Router>
                 <div className="sticky top-0">
-                    <NavBar setIsOpen={setIsOpen} modalIsOpen={modalIsOpen} />
+                    <NavBar/>
                 </div>
-                <Cart setIsOpen={setIsOpen} modalIsOpen={modalIsOpen} />
+                
 
                 <Switch>
                     <Route exact path="/">
                         <Banner />
 
-                        {fourOfourpage && (
+                        {errors && (
                             <div className="text-4xl flex justify-center mt-48">
-                                {fourOfourpage}...
+                                {errors}...
                             </div>
                         )}
 

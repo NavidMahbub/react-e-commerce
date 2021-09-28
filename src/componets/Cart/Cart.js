@@ -16,18 +16,15 @@ const customStyles = {
 };
 
 export default function Cart({ setIsOpen, modalIsOpen }) {
-    let subtitle,
-        total = 0;
+
     const { cart } = useContext(CartContext);
+
+    let subtitle, total = 0;
+    
     Modal.setAppElement("#root");
 
     function afterOpenModal() {
-        // references are now sync'd and can be accessed.
         subtitle.style.color = "#f00";
-    }
-
-    function closeModal() {
-        setIsOpen(false);
     }
 
     return (
@@ -35,13 +32,13 @@ export default function Cart({ setIsOpen, modalIsOpen }) {
             <Modal
                 isOpen={modalIsOpen}
                 onAfterOpen={afterOpenModal}
-                onRequestClose={closeModal}
+                onRequestClose={() => setIsOpen(false)}
                 style={customStyles}
                 htmlOpenClassName="overflow-hidden"
             >
                 <h2
                     ref={(_subtitle) => (subtitle = _subtitle)}
-                    onClick={closeModal}
+                    onClick={() => setIsOpen(false)}
                     className="cursor-pointer"
                 >
                     X
@@ -49,9 +46,9 @@ export default function Cart({ setIsOpen, modalIsOpen }) {
 
                 <h2 className="text-center tracking-widest">Cart Items</h2>
 
-                {cart.map((item, idx) => {
+                {cart.map(item => {
                     total += item.quantity * item.price;
-                    return <CartItem key={idx} item = {item} />;
+                    return <CartItem key={item.id} item = {item} />
                 })}
 
                 <div className="flex justify-end mr-8">
@@ -59,9 +56,7 @@ export default function Cart({ setIsOpen, modalIsOpen }) {
                 </div>
                 
                 <Link to="/check_out" className="flex justify-center w-24 p-1 m-auto  border  cursor-pointer border-black hover:bg-black hover:text-white text-center"
-                    onClick={(e) => {
-                        return closeModal();
-                    }}
+                    onClick={() => setIsOpen(false)}
                 >
                     Check Out
                 </Link>

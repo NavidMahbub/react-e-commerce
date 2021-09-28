@@ -1,7 +1,5 @@
 import React, {useReducer} from 'react'
-
 export const CartContext = React.createContext();
-
 function reducer(state, {type, action}){
     switch(type){
         case 'ADD_CART' :
@@ -21,11 +19,8 @@ function reducer(state, {type, action}){
             return state;
     }    
 }
-
 export const CartContextProvider = (props) => {
-
     const [cart, setCart] = useReducer(reducer, [])
-
     return (
         <CartContext.Provider value ={{cart, setCart}}>
             {props.children}

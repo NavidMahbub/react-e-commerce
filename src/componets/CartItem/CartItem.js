@@ -2,7 +2,9 @@ import React, { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext/CartContext";
 
 export default function CartItem({ item }) {
+    
     const { setCart } = useContext(CartContext);
+
     return (
         <div>
             {item.quantity && (
