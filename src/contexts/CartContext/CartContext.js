@@ -1,29 +1,43 @@
-import React, {useReducer} from 'react'
-export const CartContext = React.createContext();
-function reducer(state, {type, action}){
-    switch(type){
-        case 'ADD_CART' :
-            for(let i = 0; i < state.length; i++){
-                if(state[i].id === action.id){
-                    state[i].quantity += action.quantity;
-                    if(state[i].quantity <= 0) state[i].quantity = false
-                    return [...state];
-                }
+import React, { useReducer,createContext } from "react";
+export const CartContext = createContext();
+
+
+function reducer(state, { type, payload }) {
+
+    switch (type) {
+        case "ADD_TO_CART":
+
+            // works for updating product in cart if already exist in the cart
+
+            const idx = state.findIndex(item => item.id === payload.id)
+
+            if(idx > -1){
+                const newState = [
+                    ...state.slice(0, idx),
+                    {...state[idx], quantity: state[idx].quantity + payload.quantity },
+                    ...state.slice(idx + 1)
+                ]
+                return newState
             }
-            return [...state, action]
-        case 'DELETE_CART' :
-            return state.filter(c => c.id !==action.id)
-        case 'CHECKOUT_CART' :
-            return action
+            
+            // works for adding product in cart first time
+            return [...state, payload];
+
+        case "DELETE_FROM_CART":
+            return state.filter((c) => c.id !== payload.id);
+        case "CHECKOUT_CART":
+            return [];
         default:
             return state;
-    }    
+    }
 }
+
+
 export const CartContextProvider = (props) => {
-    const [cart, setCart] = useReducer(reducer, [])
+    const [cart, setCart] = useReducer(reducer, []);
     return (
-        <CartContext.Provider value ={{cart, setCart}}>
+        <CartContext.Provider value={{ cart, setCart }}>
             {props.children}
         </CartContext.Provider>
-    )
-}
+    );
+};

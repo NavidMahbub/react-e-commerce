@@ -7,13 +7,13 @@ export default function CartItem({ item }) {
 
     return (
         <div>
-            {item.quantity && (
+            {item.quantity ? (
                 <div className="flex bg-gray-100 my-3 px-2 lg:m-6 lg:p-4 justify-between rounded shadow-xl">
                     <div className="flex">
                         <div
                             className="cursor-pointer m-auto"
                             onClick={(e) =>
-                                setCart({ type: "DELETE_CART", action: item })
+                                setCart({ type: "DELETE_FROM_CART", payload: item })
                             }
                         >
                             X
@@ -35,8 +35,8 @@ export default function CartItem({ item }) {
                                 className="cursor-pointer px-3"
                                 onClick={(e) =>
                                     setCart({
-                                        type: "ADD_CART",
-                                        action: { ...item, quantity: -1 },
+                                        type: "ADD_TO_CART",
+                                        payload: { ...item, quantity: -1 },
                                     })
                                 }
                             >
@@ -44,11 +44,11 @@ export default function CartItem({ item }) {
                             </p>
                             {item.quantity}
                             <p
-                                className="cursor-pointer px-3 "
+                                className="cursor-pointer px-3"
                                 onClick={(e) =>
                                     setCart({
-                                        type: "ADD_CART",
-                                        action: { ...item, quantity: 1 },
+                                        type: "ADD_TO_CART",
+                                        payload: { ...item, quantity: 1 },
                                     })
                                 }
                             >
@@ -57,7 +57,7 @@ export default function CartItem({ item }) {
                         </div>
                     </div>
                 </div>
-            )}
+            ):null}
         </div>
     );
 }
